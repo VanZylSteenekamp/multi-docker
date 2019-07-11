@@ -8,7 +8,7 @@ before_install:
 script:
   - docker run vzs/react-test npm test -- --coverage
 
-after_sucess:
+after_success:
   - docker build -t vzs/multi-client ./client
   - docker build -t vzs/multi-nginx ./nginx
   - docker build -t vzs/multi-server ./server
