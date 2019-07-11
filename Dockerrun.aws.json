@@ -1,6 +1,6 @@
 {
-  "AWSRBDockerrunVersion": 2,
-  "ContainerDefinitions": [
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
     {
       "name": "client",
       "image": "vzsteenekamp/multi-client",
