@@ -1,0 +1,35 @@
+{
+  "AWSRBDockerrunVersion": 2,
+  "ContainerDefinitions": [
+    {
+      "name": "client",
+      "image": "vzsteenekamp/multi-client",
+      "hostname": "client",
+      "essential": false
+    },
+    {
+      "name": "server",
+      "image": "vzsteenekamp/multi-server",
+      "hostname": "api",
+      "essential": false
+    },
+    {
+      "name": "worker",
+      "image": "vzsteenekamp/multi-worker",
+      "hostname": "worker",
+      "essential": false
+    },
+    {
+      "name": "nginx",
+      "image": "vzsteenekamp/multi-nginx",
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort":80,
+          "containerPort":80
+        }
+      ],
+      "links": ["client","server"]
+    }
+  ]
+}
