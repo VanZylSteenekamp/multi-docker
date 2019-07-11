@@ -1,0 +1,20 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t vzs/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run vzs/react-test npm test -- --coverage
+
+after_sucess:
+  - docker build -t vzs/multi-client ./client
+  - docker build -t vzs/multi-nginx ./nginx
+  - docker build -t vzs/multi-server ./server
+  - docker build -t vzs/multi-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push vzs/multi-client
+  - docker push vzs/multi-nginx
+  - docker push vzs/multi-server
+  - docker push vzs/multi-worker
