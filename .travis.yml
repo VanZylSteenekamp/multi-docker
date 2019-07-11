@@ -9,12 +9,12 @@ script:
   - docker run vzs/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t vzs/multi-client ./client
-  - docker build -t vzs/multi-nginx ./nginx
-  - docker build -t vzs/multi-server ./server
-  - docker build -t vzs/multi-worker ./worker
+  - docker build -t vzsteenekamp/multi-client ./client
+  - docker build -t vzsteenekamp/multi-nginx ./nginx
+  - docker build -t vzsteenekamp/multi-server ./server
+  - docker build -t vzsteenekamp/multi-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push vzs/multi-client
-  - docker push vzs/multi-nginx
-  - docker push vzs/multi-server
-  - docker push vzs/multi-worker
+  - docker push vzsteenekamp/multi-client
+  - docker push vzsteenekamp/multi-nginx
+  - docker push vzsteenekamp/multi-server
+  - docker push vzsteenekamp/multi-worker
